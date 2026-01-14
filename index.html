@@ -37,7 +37,8 @@
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; display: inline-block; }
+        img { max-width: 100%; height: auto; display: block; }
 
         /* --- UTILITARIOS --- */
         .container {
@@ -84,10 +85,14 @@
             align-items: center;
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 40px; /* Ajuste a altura da logo no header */
+            width: auto;
         }
         
         .btn-download-sm {
@@ -103,7 +108,7 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            padding-top: 140px;
+            padding-top: 160px;
             padding-bottom: 80px;
             display: flex;
             flex-direction: column;
@@ -141,11 +146,10 @@
 
         .cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 45, 121, 0.5);
+            box-shadow: 0 0 40px rgba(255, 45, 121, 0.5);
         }
 
         /* --- MOCKUP DE IPHONE CSS --- */
-        /* Isso cria a borda do celular automaticamente ao redor das imagens */
         .iphone-mockup {
             border: 12px solid #2a2a2a;
             border-radius: 50px;
@@ -157,6 +161,7 @@
             margin: 0 auto;
             position: relative;
             background: #000;
+            overflow: hidden; /* Garante que a imagem não vaze as bordas arredondadas */
         }
 
         .hero-image-container {
@@ -194,12 +199,14 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 600;
         }
 
         .feature-content h2 {
             font-size: 3rem;
             margin-bottom: 20px;
             letter-spacing: -0.01em;
+            line-height: 1.1;
         }
 
         .feature-content p {
@@ -216,63 +223,90 @@
         /* Ajuste para imagens empilhadas */
         .stacked-images {
             position: relative;
-            height: 600px; /* Ajuste conforme necessidade */
+            height: 650px; /* Aumentei um pouco para dar mais respiro */
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .img-back {
             position: absolute;
-            top: 0;
-            right: 20px;
-            transform: scale(0.9) translateX(40px);
-            opacity: 0.6;
-            filter: blur(2px);
+            transform: scale(0.9) translateX(50px) translateY(-20px);
+            opacity: 0.5;
+            filter: blur(1px);
             z-index: 1;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .img-front {
-            position: absolute;
-            top: 50px;
-            left: 20px;
+            position: relative;
             z-index: 2;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,1); 
         }
         
         .feature-grid:hover .img-back {
-            transform: scale(0.92) translateX(60px);
+            transform: scale(0.94) translateX(70px) translateY(-30px);
             opacity: 0.8;
             filter: blur(0px);
         }
+         .feature-grid:hover .img-front {
+             transform: scale(1.02);
+         }
 
         /* --- SECTION DETAILS (Centralizada) --- */
         .details-section {
-            background-color: #090909;
-            padding: 120px 0;
+            background: linear-gradient(180deg, #000000 0%, #090909 100%);
+            padding: 140px 0;
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 80px 0;
+            padding: 100px 0 60px;
             text-align: center;
-            border-top: 1px solid #222;
+            background-color: #000;
         }
 
-        .footer-logo img {
-            width: 60px;
-            margin-bottom: 20px;
+        .footer-bottom {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding-top: 40px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-logo {
+            height: 60px; /* Tamanho da logo no footer */
+            width: auto;
+            opacity: 0.9;
+        }
+        
+        .footer-bottom p {
+             font-size: 0.85rem; color: #666;
         }
 
         /* --- RESPONSIVO --- */
+        @media (max-width: 968px) {
+             h1 { font-size: 2.8rem; }
+             .feature-content h2 { font-size: 2.5rem; }
+             .iphone-mockup { max-width: 300px; border-width: 10px;}
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .feature-grid { grid-template-columns: 1fr; gap: 40px; }
+            .subheadline { font-size: 1.2rem; }
+            .feature-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
             .feature-grid.reverse { display: flex; flex-direction: column-reverse; }
-            .iphone-mockup { max-width: 280px; }
-            .stacked-images { height: 500px; }
-            .img-back { right: 0; transform: scale(0.9); }
-            .img-front { left: 0; }
+            
+            /* Ajuste das imagens empilhadas no mobile */
+            .stacked-images { height: auto; display: block; margin-bottom: 40px;}
+            .img-back { position: relative; transform: scale(0.9); opacity: 0.7; filter: blur(0); margin-bottom: -150px; z-index: 1;}
+            .img-front { position: relative; z-index: 2; margin: 0 auto; }
+            .feature-grid:hover .img-back, .feature-grid:hover .img-front { transform: none; }
+
+            .footer-bottom { margin-top: 60px; }
         }
     </style>
 </head>
@@ -280,7 +314,9 @@
 
     <header>
         <div class="container nav-content">
-            <div class="logo">No Palco</div>
+            <a href="#" class="logo-container">
+                <img src="./image_8.png" alt="No Palco Logo" class="logo-img">
+            </a>
             <a href="#" class="btn-download-sm">Baixar App</a>
         </div>
     </header>
@@ -291,7 +327,7 @@
         <a href="#" class="cta-button">Baixar na App Store</a>
 
         <div class="hero-image-container">
-            <img src="2026-01-14 01-40-55 High Res Screenshot.jpg" alt="Dashboard No Palco" class="iphone-mockup">
+            <img src="./2026-01-14 01-40-55 High Res Screenshot.png" alt="Dashboard No Palco" class="iphone-mockup">
         </div>
     </section>
 
@@ -303,7 +339,7 @@
                 <p>O Dashboard elimina a complexidade. Veja instantaneamente seus próximos shows, datas marcadas e total a receber. Comece seu dia sabendo onde focar.</p>
             </div>
             <div class="feature-image">
-                <img src="2026-01-14 01-41-31 High Res Screenshot.jpg" alt="Resumo Dashboard" class="iphone-mockup">
+                <img src="./2026-01-14 01-41-31 High Res Screenshot.png" alt="Resumo Dashboard" class="iphone-mockup">
             </div>
         </div>
     </section>
@@ -311,8 +347,8 @@
     <section class="feature-section">
         <div class="container feature-grid reverse fade-in-section">
             <div class="feature-image stacked-images">
-                <img src="2026-01-14 01-41-31 High Res Screenshot.jpg" alt="Gráfico Financeiro" class="iphone-mockup img-back">
-                <img src="2026-01-14 01-41-16 High Res Screenshot.jpg" alt="Lista Financeira" class="iphone-mockup img-front">
+                <img src="./2026-01-14 01-41-31 High Res Screenshot.png" alt="Gráfico Financeiro" class="iphone-mockup img-back">
+                <img src="./2026-01-14 01-41-16 High Res Screenshot.png" alt="Lista Financeira" class="iphone-mockup img-front">
             </div>
             <div class="feature-content">
                 <h3 class="text-yellow">Financeiro</h3>
@@ -330,8 +366,8 @@
                 <p>Defina datas livres (verde) e veja shows confirmados (rosa). Adicionar um novo compromisso leva apenas alguns segundos com a interface visual.</p>
             </div>
             <div class="feature-image stacked-images">
-                <img src="2026-01-14 01-41-11 High Res Screenshot.jpg" alt="Calendario Disponivel" class="iphone-mockup img-back">
-                <img src="2026-01-14 01-41-07 High Res Screenshot.jpg" alt="Calendario Shows" class="iphone-mockup img-front">
+                <img src="./2026-01-14 01-41-11 High Res Screenshot.png" alt="Calendario Disponivel" class="iphone-mockup img-back">
+                <img src="./2026-01-14 01-41-07 High Res Screenshot.png" alt="Calendario Shows" class="iphone-mockup img-front">
             </div>
         </div>
     </section>
@@ -340,20 +376,22 @@
         <div class="container fade-in-section">
             <div class="text-center" style="margin-bottom: 60px;">
                 <h2>O poder está nos detalhes.</h2>
-                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Acesse o extrato completo de cada show. Saiba o que foi pago e o que está pendente.</p>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 1.3rem;">Acesse o extrato completo de cada show. Saiba o que foi pago e o que está pendente.</p>
             </div>
             <div class="feature-image">
-                <img src="2026-01-14 01-41-23 High Res Screenshot.jpg" alt="Extrato Detalhado" class="iphone-mockup">
+                <img src="./2026-01-14 01-41-23 High Res Screenshot.png" alt="Extrato Detalhado" class="iphone-mockup">
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <h2 style="margin-bottom: 20px;">Pronto para subir no palco?</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 40px;">Simplifique a gestão da sua carreira hoje mesmo.</p>
+        <div class="container fade-in-section">
+            <h2 style="margin-bottom: 20px; font-size: 2.5rem;">Pronto para subir no palco?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 40px; font-size: 1.2rem;">Simplifique a gestão da sua carreira hoje mesmo.</p>
             <a href="#" class="cta-button">Baixar na App Store</a>
-            <div style="margin-top: 60px; font-size: 0.8rem; color: #444;">
+            
+            <div class="footer-bottom">
+                <img src="./image_8.png" alt="No Palco Logo" class="footer-logo">
                 <p>© 2026 No Palco. Todos os direitos reservados.</p>
             </div>
         </div>
@@ -368,7 +406,7 @@
                     }
                 });
             }, {
-                threshold: 0.1
+                threshold: 0.15 /* Aumentei um pouco para garantir que aparece só quando visível */
             });
 
             document.querySelectorAll('.fade-in-section').forEach((section) => {
