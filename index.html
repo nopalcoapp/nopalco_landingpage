@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Palco - Gestão de Carreira Musical</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIAVEIS --- */
+        :root {
+            --bg-color: #000000;
+            --bg-card: #121212;
+            --text-main: #f5f5f7;
+            --text-secondary: #86868b;
+            --accent-pink: #FF2D79;
+            --accent-yellow: #FFD700;
+            --accent-blue: #2997ff;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --container-width: 1080px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- UTILITARIOS --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center { text-align: center; }
+        .gradient-text {
+            background: linear-gradient(180deg, #fff, #a1a1a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- ANIMACOES DE SCROLL --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .btn-download-sm {
+            background-color: white;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .btn-download-sm:hover { transform: scale(1.05); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .subheadline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            background-color: var(--accent-pink);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 45, 121, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 45, 121, 0.5);
+        }
+
+        /* --- MOCKUP DE IPHONE CSS --- */
+        /* Isso cria a borda do celular automaticamente ao redor das imagens */
+        .iphone-mockup {
+            border: 12px solid #2a2a2a;
+            border-radius: 50px;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8);
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            background: #000;
+        }
+
+        .hero-image-container {
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(41, 151, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        /* --- SECTIONS GRID (ZIG ZAG) --- */
+        .feature-section {
+            padding: 100px 0;
+            background-color: var(--bg-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .feature-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-content p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Cores de acento para textos */
+        .text-pink { color: var(--accent-pink); }
+        .text-yellow { color: var(--accent-yellow); }
+        .text-blue { color: var(--accent-blue); }
+
+        /* Ajuste para imagens empilhadas */
+        .stacked-images {
+            position: relative;
+            height: 600px; /* Ajuste conforme necessidade */
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-back {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            transform: scale(0.9) translateX(40px);
+            opacity: 0.6;
+            filter: blur(2px);
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .img-front {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+        
+        .feature-grid:hover .img-back {
+            transform: scale(0.92) translateX(60px);
+            opacity: 0.8;
+            filter: blur(0px);
+        }
+
+        /* --- SECTION DETAILS (Centralizada) --- */
+        .details-section {
+            background-color: #090909;
+            padding: 120px 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .footer-logo img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .feature-grid { grid-template-columns: 1fr; gap: 40px; }
+            .feature-grid.reverse { display: flex; flex-direction: column-reverse; }
+            .iphone-mockup { max-width: 280px; }
+            .stacked-images { height: 500px; }
+            .img-back { right: 0; transform: scale(0.9); }
+            .img-front { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-content">
+            <div class="logo">No Palco</div>
+            <a href="#" class="btn-download-sm">Baixar App</a>
+        </div>
+    </header>
+
+    <section class="hero container fade-in-section">
+        <h1 class="text-center gradient-text">O controle total da<br>sua carreira musical.</h1>
+        <p class="subheadline text-center">Gerencie shows, acompanhe suas finanças e organize sua disponibilidade. Tudo em um só lugar.</p>
+        <a href="#" class="cta-button">Baixar na App Store</a>
+
+        <div class="hero-image-container">
+            <img src="2026-01-14 01-40-55 High Res Screenshot.jpg" alt="Dashboard No Palco" class="iphone-mockup">
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="container feature-grid fade-in-section">
+            <div class="feature-content">
+                <h3 class="text-blue">Visão Geral</h3>
+                <h2>Tudo o que importa,<br>em um piscar de olhos.</h2>
+                <p>O Dashboard elimina a complexidade. Veja instantaneamente seus próximos shows, datas marcadas e total a receber. Comece seu dia sabendo onde focar.</p>
+            </div>
+            <div class="feature-image">
+                <img src="2026-01-14 01-41-31 High Res Screenshot.jpg" alt="Resumo Dashboard" class="iphone-mockup">
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="container feature-grid reverse fade-in-section">
+            <div class="feature-image stacked-images">
+                <img src="2026-01-14 01-41-31 High Res Screenshot.jpg" alt="Gráfico Financeiro" class="iphone-mockup img-back">
+                <img src="2026-01-14 01-41-16 High Res Screenshot.jpg" alt="Lista Financeira" class="iphone-mockup img-front">
+            </div>
+            <div class="feature-content">
+                <h3 class="text-yellow">Financeiro</h3>
+                <h2>Seu cachê,<br>transparente.</h2>
+                <p>Diga adeus às planilhas. Acompanhe receitas, monitore valores pendentes e visualize a evolução dos seus ganhos com gráficos intuitivos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="container feature-grid fade-in-section">
+            <div class="feature-content">
+                <h3 class="text-pink">Agenda Inteligente</h3>
+                <h2>Sua disponibilidade,<br>seus termos.</h2>
+                <p>Defina datas livres (verde) e veja shows confirmados (rosa). Adicionar um novo compromisso leva apenas alguns segundos com a interface visual.</p>
+            </div>
+            <div class="feature-image stacked-images">
+                <img src="2026-01-14 01-41-11 High Res Screenshot.jpg" alt="Calendario Disponivel" class="iphone-mockup img-back">
+                <img src="2026-01-14 01-41-07 High Res Screenshot.jpg" alt="Calendario Shows" class="iphone-mockup img-front">
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section details-section">
+        <div class="container fade-in-section">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2>O poder está nos detalhes.</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Acesse o extrato completo de cada show. Saiba o que foi pago e o que está pendente.</p>
+            </div>
+            <div class="feature-image">
+                <img src="2026-01-14 01-41-23 High Res Screenshot.jpg" alt="Extrato Detalhado" class="iphone-mockup">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">Pronto para subir no palco?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 40px;">Simplifique a gestão da sua carreira hoje mesmo.</p>
+            <a href="#" class="cta-button">Baixar na App Store</a>
+            <div style="margin-top: 60px; font-size: 0.8rem; color: #444;">
+                <p>© 2026 No Palco. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in-section').forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
