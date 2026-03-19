@@ -1,0 +1,2 @@
+/app/* https://sareneon.base44.app/:splat  200!
+/app/* /app/index.html  200
