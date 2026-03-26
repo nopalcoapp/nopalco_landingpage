@@ -94,7 +94,7 @@
         }
         
         .logo-img {
-            height: 40px; /* Ajuste a altura da logo no header */
+            height: 40px;
             width: auto;
         }
         
@@ -186,7 +186,8 @@
 
         /* --- SECTIONS GRID (ZIG ZAG) --- */
         .feature-section {
-            padding: 100px 0;
+            /* AJUSTE: Reduzido de 100px para 60px para diminuir os buracos no desktop */
+            padding: 60px 0; 
             background-color: var(--bg-color);
         }
 
@@ -225,7 +226,8 @@
         /* Ajuste para imagens empilhadas */
         .stacked-images {
             position: relative;
-            height: 650px;
+            /* AJUSTE: Reduzido de 650px para 500px para evitar espaços vazios em cima e embaixo */
+            height: 500px; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -259,7 +261,8 @@
         /* --- SECTION DETAILS (Centralizada) --- */
         .details-section {
             background: linear-gradient(180deg, #000000 0%, #090909 100%);
-            padding: 140px 0;
+            /* AJUSTE: Reduzido de 140px para 80px */
+            padding: 80px 0; 
         }
 
         /* --- FOOTER --- */
@@ -297,9 +300,28 @@
         }
 
         @media (max-width: 768px) {
+            /* AJUSTE MOBILE: Reduzindo espaçamentos drasticamente para telas menores */
+            .hero {
+                padding-top: 120px; 
+                padding-bottom: 40px;
+            }
+
+            .feature-section {
+                padding: 40px 0; 
+            }
+
+            .details-section {
+                padding: 50px 0;
+            }
+
             h1 { font-size: 2.5rem; }
             .subheadline { font-size: 1.2rem; }
-            .feature-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+            
+            .feature-grid { 
+                grid-template-columns: 1fr; 
+                gap: 40px; /* Reduzido de 60px para 40px */
+                text-align: center; 
+            }
             .feature-grid.reverse { display: flex; flex-direction: column-reverse; }
             
             .stacked-images { height: auto; display: block; margin-bottom: 40px;}
@@ -316,7 +338,7 @@
     <header>
         <div class="container nav-content">
             <a href="#" class="logo-container">
-                <img src="./Logo-No-Palco-App-Transparente - cópia.png" alt="No Palco Logo" class="logo-img">
+                <img src="./Logo-No-Palco-App-Transparente - cópia.png" alt="No Palco Logo" class="logo-img">
             </a>
             <a href="https://app.nopalcoapp.com.br/" target="_blank" class="btn-download-sm">Acessar App</a>
         </div>
@@ -341,7 +363,7 @@
                 <p>O Dashboard elimina a complexidade. Veja instantaneamente seus próximos shows, datas marcadas e total a receber. Comece seu dia sabendo onde focar.</p>
             </div>
             <div class="feature-image">
-                <img src="./2026-01-14 01-41-31 High Res Screenshot.png" alt="Resumo Dashboard" class="iphone-mockup">
+                <img src="./2026-01-14 01-41-31 High Res Screenshot.png" alt="Resumo Dashboard" class="iphone-mockup" loading="lazy">
             </div>
         </div>
     </section>
@@ -349,8 +371,8 @@
     <section class="feature-section">
         <div class="container feature-grid reverse fade-in-section">
             <div class="feature-image stacked-images">
-                <img src="./2026-01-14 01-41-31 High Res Screenshot.png" alt="Gráfico Financeiro" class="iphone-mockup img-back">
-                <img src="./2026-01-14 01-41-16 High Res Screenshot.png" alt="Lista Financeira" class="iphone-mockup img-front">
+                <img src="./2026-01-14 01-41-31 High Res Screenshot.png" alt="Gráfico Financeiro" class="iphone-mockup img-back" loading="lazy">
+                <img src="./2026-01-14 01-41-16 High Res Screenshot.png" alt="Lista Financeira" class="iphone-mockup img-front" loading="lazy">
             </div>
             <div class="feature-content">
                 <h3 class="text-yellow">Financeiro</h3>
@@ -368,8 +390,8 @@
                 <p>Defina datas livres (verde) e veja shows confirmados (rosa). Adicionar um novo compromisso leva apenas alguns segundos com a interface visual.</p>
             </div>
             <div class="feature-image stacked-images">
-                <img src="./2026-01-14 01-41-11 High Res Screenshot.png" alt="Calendario Disponivel" class="iphone-mockup img-back">
-                <img src="./2026-01-14 01-41-07 High Res Screenshot.png" alt="Calendario Shows" class="iphone-mockup img-front">
+                <img src="./2026-01-14 01-41-11 High Res Screenshot.png" alt="Calendario Disponivel" class="iphone-mockup img-back" loading="lazy">
+                <img src="./2026-01-14 01-41-07 High Res Screenshot.png" alt="Calendario Shows" class="iphone-mockup img-front" loading="lazy">
             </div>
         </div>
     </section>
@@ -381,7 +403,7 @@
                 <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 1.3rem;">Acesse o extrato completo de cada show. Saiba o que foi pago e o que está pendente.</p>
             </div>
             <div class="feature-image">
-                <img src="./2026-01-14 01-41-23 High Res Screenshot.png" alt="Extrato Detalhado" class="iphone-mockup">
+                <img src="./2026-01-14 01-41-23 High Res Screenshot.png" alt="Extrato Detalhado" class="iphone-mockup" loading="lazy">
             </div>
         </div>
     </section>
@@ -394,7 +416,7 @@
             <a href="https://app.nopalcoapp.com.br/" target="_blank" class="cta-button">Acessar App</a>
             
             <div class="footer-bottom">
-                <img src="./Logo-No-Palco-App-Transparente - cópia.png" alt="No Palco Logo" class="footer-logo">
+                <img src="./Logo-No-Palco-App-Transparente - cópia.png" alt="No Palco Logo" class="footer-logo" loading="lazy">
                 <p>© 2026 No Palco. Todos os direitos reservados.</p>
             </div>
         </div>
